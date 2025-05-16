@@ -2,29 +2,192 @@
 @tailwind components;
 @tailwind utilities;
 
-html, body, #root {
-  height: 100%;
+/* --- THEME COLOR PALETTE --- */
+:root {
+  --color-black: #5a2e2e;
+  --color-dark-grey: #18181a;
+  --color-grey: #e5e7eb;
+  --color-white: #ffffff;
+  --color-red: #e11d48;
+  --color-blue: #2563eb;
+  --color-section-border: #18181a; /* darker border for light theme */
+}
+
+.dark {
+  --color-section-border: #e5e7eb; /* lighter border for dark theme */
 }
 
 body {
+  background: var(--color-grey);
+  color: var(--color-black);
   font-family: 'Inter', system-ui, sans-serif;
-  background: #f3f4f6;
-  color: #111827;
+  min-height: 100vh;
 }
 
 .dark body {
-  background: #111827;
-  color: #f3f4f6;
+  background: var(--color-dark-grey);
+  color: var(--color-white);
 }
 
-::-webkit-scrollbar {
-  width: 8px;
-  background: transparent;
+/* Header title */
+.header-title {
+  font-size: 1.5rem;
+  font-weight: bold;
+  color: #0d0d0d;
+  filter: drop-shadow(0 1px 2px rgba(0,0,0,0.12));
 }
-::-webkit-scrollbar-thumb {
-  background: #d1d5db;
-  border-radius: 4px;
+.dark .header-title {
+  color: var(--color-white);
 }
-.dark ::-webkit-scrollbar-thumb {
-  background: #374151;
+
+/* Main content container */
+
+/* Form input */
+.input-url {
+  flex: 1;
+  padding: 0.5rem 0.75rem;
+  border-radius: 0.5rem;
+  border: 1px solid var(--color-section-border);
+  background: var(--color-input-bg);
+  color: var(--color-input-text);
+  outline: none;
+  transition: box-shadow 0.2s;
+}
+.input-url:focus {
+  box-shadow: 0 0 0 2px var(--color-btn);
+}
+.dark .input-url {
+  border-color: var(--color-section-border);
+  background: var(--color-input-bg);
+  color: var(--color-input-text);
+}
+
+/* Load button */
+.load-btn {
+  background: #e5e7eb;
+  color: #18181a;
+  padding: 0.5rem 1rem;
+  border-radius: 0.5rem;
+  font-weight: 600;
+  transition: background 0.2s;
+  border: none;
+}
+.load-btn:hover {
+  background: #9d9d9d;
+}
+
+/* Section container spacing */
+.pt-header {
+  padding-top: 5rem;
+}
+
+/* Chat box sizing */
+.chat-section {
+  width: 100%;
+  max-width: 64rem;
+}
+.chat-window-short {
+  height: 18rem;
+}
+@media (min-width: 768px) {
+  .chat-window-short {
+    height: 22rem;
+  }
+}
+
+/* ChatWindow message bubbles */
+.ai-message {
+  background: var(--color-red);
+  color: var(--color-white);
+  border-radius: 0.75rem 0.75rem 0.75rem 0.25rem;
+  padding: 0.5rem 1rem;
+  margin-bottom: 0.5rem;
+  max-width: 80%;
+  align-self: flex-start;
+}
+.user-message {
+  background: var(--color-blue);
+  color: var(--color-white);
+  border-radius: 0.75rem 0.75rem 0.25rem 0.75rem;
+  padding: 0.5rem 1rem;
+  margin-bottom: 0.5rem;
+  max-width: 80%;
+  align-self: flex-end;
+}
+
+/* ChatInput styles */
+.chat-input-form {
+  display: flex;
+  gap: 0.5rem;
+  margin-top: 1rem;
+}
+.chat-input-box {
+  flex: 1;
+  padding: 0.5rem 1rem;
+  border-radius: 0.5rem;
+  border: 1px solid var(--color-section-border);
+  background: var(--color-input-bg);
+  color: var(--color-input-text);
+  outline: none;
+  font-size: 1rem;
+  transition: box-shadow 0.2s;
+}
+.chat-input-box:focus {
+  box-shadow: 0 0 0 2px var(--color-btn);
+}
+.dark .chat-input-box {
+  border-color: var(--color-section-border);
+  background: var(--color-input-bg);
+  color: var(--color-input-text);
+}
+.send-btn {
+  background: #e5e7eb;
+  color: #18181a;
+  padding: 0.5rem 1.25rem;
+  border-radius: 0.5rem;
+  font-weight: 600;
+  font-size: 1rem;
+  border: none;
+  transition: background 0.2s;
+}
+.send-btn:disabled {
+  opacity: 0.5;
+  cursor: not-allowed;
+}
+.send-btn:hover:not(:disabled) {
+  background: #9d9d9d;
+}
+
+/* ChatWindow container */
+.chat-window-container {
+  flex: 1;
+  display: flex;
+  flex-direction: column;
+  background: var(--color-bg);
+  border-radius: 1rem;
+  box-shadow: 0 4px 32px 0 rgba(24,24,26,0.18), 0 1.5px 8px 0 rgba(24,24,26,0.10);
+  padding: 1rem;
+  overflow-y: auto;
+}
+.dark .chat-window-container {
+  background: var(--color-bg);
+  box-shadow: none;
+  border: 1px solid var(--color-section-border);
+}
+
+/* Typing indicator */
+.typing-indicator {
+  background: var(--color-grey);
+  color: var(--color-black);
+  padding: 0.5rem 1rem;
+  border-radius: 0.75rem 0.75rem 0.75rem 0.25rem;
+  font-size: 0.95rem;
+  display: flex;
+  align-items: center;
+  gap: 0.5rem;
+  margin-bottom: 0.5rem;
+}
+.dark .typing-indicator {
+  background: var(--color-dark-grey);
+  color: var(--color-white);
 }
